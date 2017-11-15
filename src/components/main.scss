@@ -9,10 +9,14 @@ a{
 {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     margin: 10px;
     z-index: 9999;
-    background-color: pink; 
+    background-color: pink;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main{
