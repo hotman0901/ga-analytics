@@ -89,10 +89,13 @@ class Page7 extends Component {
         query: {
           ids,
           metrics: "ga:sessions",
-          dimensions: "ga:browser, ga:date"
+          dimensions: "ga:browser, ga:date",
+          'start-date': '7daysAgo',
+          'end-date': 'today'
         }
       });
 
+     
       // get 取得設定資訊
       // console.log(report.get())
 
@@ -102,7 +105,7 @@ class Page7 extends Component {
         // label 改成前七天範圍
         let days = [];
         let i;
-        for (i = 1; i < 8; i++) {
+        for (i = 0; i < 7; i++) {
           let date = moment()
             .subtract(i, "days")
             .format("YYYYMMDD");
@@ -117,10 +120,6 @@ class Page7 extends Component {
             }
           })
         );
-
-        // 將每個瀏覽器資料塞回state內的datasets
-        // this.state.line.dou.datasets[i].data = []
-
         // 撈出各別的瀏覽器
         const chrome = filter(response.rows, obj => {
           return obj[0] === "Chrome";
@@ -175,17 +174,13 @@ class Page7 extends Component {
         let sTotal = 0;
         chrome.forEach((element, index) => {
           cTotal += Number(element[2]);
-          // console.log(element[3]);
         });
         firefox.forEach((element, index) => {
           fTotal += Number(element[2]);
-          // console.log(element[3]);
         });
         safari.forEach((element, index) => {
           sTotal += Number(element[2]);
-          // console.log(element[3]);
         });
-        console.log(cTotal);
         circleData[0].data[0] = cTotal;
         circleData[0].data[1] = fTotal;
         circleData[0].data[2] = sTotal;
