@@ -165,11 +165,11 @@ class Page2 extends Component {
     return (
       <div className="main">
         <h1>折線圖</h1>
-        <h2>顯示每日登入人數</h2>
+        <h2>每日登入人數數量</h2>
         <div id="chart-container" />
         <div id="view-selector-container" />
 
-        <h2>Browser 登入數量</h2>
+        <h2>瀏覽器登入數量</h2>
         <div id="main-chart-container-3" />
         <div id="breakdown-chart-container-3" />
         <div id="view-selector-container-3" />

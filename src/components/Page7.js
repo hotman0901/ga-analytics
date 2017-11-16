@@ -101,6 +101,7 @@ class Page7 extends Component {
 
       // 取得query的資料
       report.on("success", function(response) {
+        console.log(response.rows)
         // 取得成功後，在這去繪製圖表
         // label 改成前七天範圍
         let days = [];

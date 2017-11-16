@@ -42,7 +42,7 @@ class Page5 extends Component {
   render() {
     return (
       <div className="main">
-        <h1>地區人數</h1>
+        <h1>觀看地區人數</h1>
         <div id="chart-container" />
         <div id="view-selector-container" />
       </div>

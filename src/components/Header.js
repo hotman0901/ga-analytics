@@ -13,7 +13,6 @@ class Header extends Component {
         return (
             <div className="header">
                 <select name="" id="" ref={(e)=>{this.select = e}} onChange={()=> this.changeSelect()}>
-                    <option value="">請選擇</option>
                     <option value="page1">CIRCLE</option>
                     <option value="page2">LINE</option>
                     <option value="page3">COLUMN</option>

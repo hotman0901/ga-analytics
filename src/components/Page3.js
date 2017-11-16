@@ -43,7 +43,7 @@ class Page3 extends Component {
     return (
       <div className="main">
         <h1>Y軸長條圖</h1>
-        <h2>顯示每日登入人數</h2>
+        <h2>每日登入人數數量</h2>
         <div id="chart-container" />
         <div id="view-selector-container" />
       </div>
