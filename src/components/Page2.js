@@ -8,9 +8,9 @@ class Page2 extends Component {
   componentDidMount() {
     gapi.analytics.ready(function() {
       /**
-             * Create a new ViewSelector instance to be rendered inside of an
-             * element with the id "view-selector-container".
-             */
+       * Create a new ViewSelector instance to be rendered inside of an
+       * element with the id "view-selector-container".
+       */
       var viewSelector = new gapi.analytics.ViewSelector({
         container: "view-selector-container"
       });
@@ -25,10 +25,10 @@ class Page2 extends Component {
       viewSelector3.execute();
 
       /**
-             * Create a new DataChart instance with the given query parameters
-             * and Google chart options. It will be rendered inside an element
-             * with the id "chart-container".
-             */
+       * Create a new DataChart instance with the given query parameters
+       * and Google chart options. It will be rendered inside an element
+       * with the id "chart-container".
+       */
       var dataChart = new gapi.analytics.googleCharts.DataChart({
         query: {
           metrics: "ga:sessions",
@@ -77,27 +77,11 @@ class Page2 extends Component {
             width: "100%"
           }
         }
-        // query: {
-        //     metrics: 'ga:sessions',
-        //     dimensions: 'ga:browser',
-        //     'start-date': '30daysAgo',
-        //     'end-date': 'yesterday',
-        //     'max-results': 6,
-        //     sort: '-ga:sessions'
-        // },
-        // chart: {
-        //     container: 'breakdown-chart-container-3',
-        //     type: 'PIE',
-        //     options: {
-        //         width: '100%',
-        //         pieHole: 4 / 9
-        //     }
-        // }
       });
 
       /**
-             * Render the dataChart on the page whenever a new view is selected.
-             */
+       * Render the dataChart on the page whenever a new view is selected.
+       */
       viewSelector.on("change", function(ids) {
         dataChart
           .set({
@@ -109,15 +93,15 @@ class Page2 extends Component {
       });
 
       /**
-             * Store a refernce to the row click listener variable so it can be
-             * removed later to prevent leaking memory when the chart instance is
-             * replaced.
-             */
+       * Store a refernce to the row click listener variable so it can be
+        * removed later to prevent leaking memory when the chart instance is
+        * replaced.
+        */
       var mainChartRowClickListener3;
 
       /**
-             * Update both charts whenever the selected view changes.
-             */
+       * Update both charts whenever the selected view changes.
+       */
       viewSelector3.on("change", function(ids) {
         var options = {
           query: {
@@ -141,10 +125,10 @@ class Page2 extends Component {
       });
 
       /**
-             * Each time the main chart is rendered, add an event listener to it so
-             * that when the user clicks on a row, the line chart is updated with
-             * the data from the browser in the clicked row.
-             */
+       * Each time the main chart is rendered, add an event listener to it so
+       * that when the user clicks on a row, the line chart is updated with
+       * the data from the browser in the clicked row.
+       */
       mainChart3.on("success", function(response) {
         var chart = response.chart;
         var dataTable = response.dataTable;
