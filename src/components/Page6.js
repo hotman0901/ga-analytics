@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-class Page3 extends Component {
+class Page6 extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -15,14 +15,14 @@ class Page3 extends Component {
 
       var dataChart = new gapi.analytics.googleCharts.DataChart({
         query: {
-          metrics: "ga:bounceRate",
-          dimensions: "ga:date",
+          metrics: "ga:sessions",
+          dimensions: "ga:country",
           "start-date": "30daysAgo",
           "end-date": "yesterday"
         },
         chart: {
           container: "chart-container",
-          type: "COLUMN",
+          type: "GEO",
           options: {
             width: "100%"
           }
@@ -42,8 +42,7 @@ class Page3 extends Component {
   render() {
     return (
       <div className="main">
-        <h1>Y軸長條圖 / 30天</h1>
-        <h2>跳出率</h2>
+        <h1>地圖顯示人數 / 30天</h1>
         <div id="chart-container" />
         <div id="view-selector-container" />
       </div>
@@ -51,4 +50,4 @@ class Page3 extends Component {
   }
 }
 
-export default Page3;
+export default Page6;

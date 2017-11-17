@@ -209,7 +209,7 @@ class Page7 extends Component {
     return (
       <div className="main">
         <br />
-        <h1>Report.Data</h1>
+        <h1>Report.Data / 7天</h1>
         <Doughnut
           data={this.state.circle.dou}
           width={100}

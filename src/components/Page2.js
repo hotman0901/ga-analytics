@@ -164,7 +164,7 @@ class Page2 extends Component {
   render() {
     return (
       <div className="main">
-        <h1>折線圖</h1>
+        <h1>折線圖 / 30天</h1>
         <h2>每日登入人數數量</h2>
         <div id="chart-container" />
         <div id="view-selector-container" />

@@ -16,7 +16,7 @@ class Page5 extends Component {
       var dataChart = new gapi.analytics.googleCharts.DataChart({
         query: {
           metrics: "ga:sessions",
-          dimensions: "ga:country",
+          dimensions: "ga:deviceCategory, ga:date",
           "start-date": "30daysAgo",
           "end-date": "yesterday"
         },
@@ -42,7 +42,7 @@ class Page5 extends Component {
   render() {
     return (
       <div className="main">
-        <h1>觀看地區人數</h1>
+        <h1>使用裝置 / 30天</h1>
         <div id="chart-container" />
         <div id="view-selector-container" />
       </div>

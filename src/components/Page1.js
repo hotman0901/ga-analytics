@@ -102,7 +102,7 @@ class Page1 extends Component {
   render() {
     return (
       <div className="main">
-        <h1>圓餅圖</h1>
+        <h1>圓餅圖 / 30天</h1>
         <h2>瀏覽器數量百分比</h2>
         <div id="chart-container-1" />
         <div id="view-selector-container-1" />

@@ -16,9 +16,9 @@ class Page4 extends Component {
       var dataChart = new gapi.analytics.googleCharts.DataChart({
         query: {
           metrics: "ga:sessions",
-          dimensions: "ga:date",
+          dimensions: "ga:source",
           "start-date": "30daysAgo",
-          "end-date": "yesterday"
+          "end-date": "yesterday",
         },
         chart: {
           container: "chart-container",
@@ -42,8 +42,8 @@ class Page4 extends Component {
   render() {
     return (
       <div className="main">
-        <h1>X軸長條圖</h1>
-        <h2>顯示每日登入人數</h2>
+        <h1>X軸長條圖 / 30天</h1>
+        <h2>進入網站的來源位置</h2>
         <div id="chart-container" />
         <div id="view-selector-container" />
       </div>

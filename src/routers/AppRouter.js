@@ -5,8 +5,9 @@ import Page2 from '../components/Page2';
 import Page3 from '../components/Page3';
 import Page4 from '../components/Page4';
 import Page5 from '../components/Page5';
-import Header from '../components/header';
+import Page6 from '../components/Page6';
 import Page7 from '../components/Page7';
+import Header from '../components/header';
 
 const AppRouter = () => (
     <BrowserRouter>
@@ -19,6 +20,7 @@ const AppRouter = () => (
           <Route path="/page3" component={Page3} exact />
           <Route path="/page4" component={Page4} exact />
           <Route path="/page5" component={Page5} exact />
+          <Route path="/page6" component={Page6} exact />
           <Route path="/page7" component={Page7} exact />
         </Switch>
       </div>

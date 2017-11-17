@@ -18,6 +18,7 @@ class Header extends Component {
                     <option value="page3">COLUMN</option>
                     <option value="page4">BAR</option>
                     <option value="page5">TABLE</option>
+                    <option value="page6">GEO</option>
                     <option value="page7">Report Data</option>
                 </select>
                 {/*                 
@@ -30,8 +31,8 @@ class Header extends Component {
                 <Link to="/page7">Report Data  </Link>  
                 */}
                 <br/>
-                <a href="https://developers.google.com/analytics/devguides/reporting/embed/v1/component-reference#datachart-options" target="_blank">doc </a>
-                <a href="https://developers.google.com/analytics/devguides/reporting/core/dimsmets" target="_blank">dimension </a>
+                {/* <a href="https://developers.google.com/analytics/devguides/reporting/embed/v1/component-reference#datachart-options" target="_blank">doc </a> */}
+                <a href="https://developers.google.com/analytics/devguides/reporting/core/dimsmets" target="_blank">doc </a>
                 <a href="https://support.google.com/analytics/answer/1033861?hl=zh-Hant" target="_blank">dimension & metrics </a>
 
                 
