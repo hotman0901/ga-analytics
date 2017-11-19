@@ -2,10 +2,26 @@ import React, { Component } from "react";
 class Page2 extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      view1: {
+        metrics: "ga:sessions",
+        dimensions: "ga:date",
+        startDate: "30daysAgo",
+        endDate: "yesterday"
+      }
+    };
+  }
+
+  componentDidUpdate() {
+    this.renderView();
   }
 
   componentDidMount() {
+    this.renderView();
+  }
+
+  renderView() {
+    const _this = this;
     gapi.analytics.ready(function() {
       /**
        * Create a new ViewSelector instance to be rendered inside of an
@@ -15,14 +31,14 @@ class Page2 extends Component {
         container: "view-selector-container"
       });
 
-      var viewSelector3 = new gapi.analytics.ViewSelector({
-        container: "view-selector-container-3"
+      var viewSelector2 = new gapi.analytics.ViewSelector({
+        container: "view-selector-container-2"
       });
 
       // Render the view selector to the page.
       viewSelector.execute();
 
-      viewSelector3.execute();
+      viewSelector2.execute();
 
       /**
        * Create a new DataChart instance with the given query parameters
@@ -31,22 +47,24 @@ class Page2 extends Component {
        */
       var dataChart = new gapi.analytics.googleCharts.DataChart({
         query: {
-          metrics: "ga:sessions",
-          dimensions: "ga:date",
-          "start-date": "30daysAgo",
-          "end-date": "yesterday"
+          metrics: _this.state.view1.metrics,
+          dimensions: _this.state.view1.dimensions,
+          "start-date": _this.state.view1.startDate,
+          "end-date": _this.state.view1.endDate
         },
         chart: {
           container: "chart-container",
           type: "LINE",
           options: {
             width: "100%"
+            // pointShape: { type: 'star', sides: 4 },
+            // pointSize: 30,
           }
         }
       });
 
       // 選擇瀏覽器
-      var mainChart3 = new gapi.analytics.googleCharts.DataChart({
+      var mainChart2 = new gapi.analytics.googleCharts.DataChart({
         query: {
           dimensions: "ga:browser",
           metrics: "ga:sessions",
@@ -55,7 +73,7 @@ class Page2 extends Component {
         },
         chart: {
           type: "TABLE",
-          container: "main-chart-container-3",
+          container: "main-chart-container-2",
           options: {
             width: "100%"
           }
@@ -63,7 +81,7 @@ class Page2 extends Component {
       });
 
       // 圖表顯示
-      var breakdownChart3 = new gapi.analytics.googleCharts.DataChart({
+      var breakdownChart2 = new gapi.analytics.googleCharts.DataChart({
         query: {
           dimensions: "ga:date",
           metrics: "ga:sessions",
@@ -72,7 +90,7 @@ class Page2 extends Component {
         },
         chart: {
           type: "LINE",
-          container: "breakdown-chart-container-3",
+          container: "breakdown-chart-container-2",
           options: {
             width: "100%"
           }
@@ -97,12 +115,12 @@ class Page2 extends Component {
         * removed later to prevent leaking memory when the chart instance is
         * replaced.
         */
-      var mainChartRowClickListener3;
+      var mainChartRowClickListener2;
 
       /**
        * Update both charts whenever the selected view changes.
        */
-      viewSelector3.on("change", function(ids) {
+      viewSelector2.on("change", function(ids) {
         var options = {
           query: {
             ids: ids
@@ -111,17 +129,17 @@ class Page2 extends Component {
 
         // Clean up any event listeners registered on the main chart before
         // rendering a new one.
-        if (mainChartRowClickListener3) {
+        if (mainChartRowClickListener2) {
           google.visualization.events.removeListener(
-            mainChartRowClickListener3
+            mainChartRowClickListener2
           );
         }
 
-        mainChart3.set(options).execute();
-        breakdownChart3.set(options);
+        mainChart2.set(options).execute();
+        breakdownChart2.set(options);
 
         // Only render the breakdown chart if a browser filter has been set.
-        if (breakdownChart3.get().query.filters) breakdownChart3.execute();
+        if (breakdownChart2.get().query.filters) breakdownChart2.execute();
       });
 
       /**
@@ -129,12 +147,12 @@ class Page2 extends Component {
        * that when the user clicks on a row, the line chart is updated with
        * the data from the browser in the clicked row.
        */
-      mainChart3.on("success", function(response) {
+      mainChart2.on("success", function(response) {
         var chart = response.chart;
         var dataTable = response.dataTable;
 
         // Store a reference to this listener so it can be cleaned up later.
-        mainChartRowClickListener3 = google.visualization.events.addListener(
+        mainChartRowClickListener2 = google.visualization.events.addListener(
           chart,
           "select",
           function(event) {
@@ -155,24 +173,79 @@ class Page2 extends Component {
               }
             };
 
-            breakdownChart3.set(options).execute();
+            breakdownChart2.set(options).execute();
           }
         );
       });
     });
   }
+
+  updateView() {
+    this.setState((prevState, props) => {
+      return {
+        view1: {
+          metrics: this.metrics1.value,
+          dimensions: this.dimensions1.value,
+          startDate: this.startDate1.value,
+          endDate: this.endDate1.value
+        }
+      };
+    });
+  }
+
   render() {
     return (
       <div className="main">
         <h1>折線圖 / 30天</h1>
         <h2>每日登入人數數量</h2>
+        <p>
+          metrics:{" "}
+          <input
+            type="text"
+            ref={e => {
+              this.metrics1 = e;
+            }}
+            defaultValue={this.state.view1.metrics}
+          />
+        </p>
+        <p>
+          dimensions:{" "}
+          <input
+            type="text"
+            ref={e => {
+              this.dimensions1 = e;
+            }}
+            defaultValue={this.state.view1.dimensions}
+          />
+        </p>
+        <p>
+          startDate:{" "}
+          <input
+            type="text"
+            ref={e => {
+              this.startDate1 = e;
+            }}
+            defaultValue={this.state.view1.startDate}
+          />
+        </p>
+        <p>
+          endDate:{" "}
+          <input
+            type="text"
+            ref={e => {
+              this.endDate1 = e;
+            }}
+            defaultValue={this.state.view1.endDate}
+          />
+        </p>
+        <input type="button" value="update" onClick={() => this.updateView()} />
         <div id="chart-container" />
         <div id="view-selector-container" />
 
         <h2>瀏覽器登入數量</h2>
-        <div id="main-chart-container-3" />
-        <div id="breakdown-chart-container-3" />
-        <div id="view-selector-container-3" />
+        <div id="main-chart-container-2" />
+        <div id="breakdown-chart-container-2" />
+        <div id="view-selector-container-2" />
       </div>
     );
   }

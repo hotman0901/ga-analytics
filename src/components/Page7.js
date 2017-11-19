@@ -90,18 +90,17 @@ class Page7 extends Component {
           ids,
           metrics: "ga:sessions",
           dimensions: "ga:browser, ga:date",
-          'start-date': '7daysAgo',
-          'end-date': 'today'
+          "start-date": "7daysAgo",
+          "end-date": "today"
         }
       });
 
-     
       // get 取得設定資訊
       // console.log(report.get())
 
       // 取得query的資料
       report.on("success", function(response) {
-        console.log(response.rows)
+        console.log(response.rows);
         // 取得成功後，在這去繪製圖表
         // label 改成前七天範圍
         let days = [];
@@ -210,6 +209,7 @@ class Page7 extends Component {
       <div className="main">
         <br />
         <h1>Report.Data / 7天</h1>
+        <h2>Use react-chartjs-2</h2>
         <Doughnut
           data={this.state.circle.dou}
           width={100}
